@@ -1,0 +1,39 @@
+\newfontfamily{\mono}{LigalexMono}
+[Extension = .ttf, UprightFont = *-Text]
+
+\definecolor{gbg}{rgb}{0.8, 1, 0.8}
+\definecolor{bbg}{rgb}{0.85, 0.9, 1}
+\definecolor{sep}{rgb}{0.5, 0.5, 0.5}
+\definecolor{ksbg}{rgb}{0.92, 0.92, 0.92}
+\def\columnseprulecolor{\color{sep}}
+\sethlcolor{gbg}
+\setlength{\columnseprule}{1pt}
+\newcommand\pspara{\fontsize{13pt}{18pt}\selectfont}
+\newcommand\psic{\fontsize{10pt}{18pt}\selectfont}
+\newcommand\pstitle{\fontsize{21pt}{30pt}\selectfont}
+\newcommand{\fn}[1]{\hl{#1}}
+\newcommand{\fnbox}[1]{\colorbox{gbg}{\parbox{1\textwidth}{#1}}}
+\newcommand{\icbox}[1]{\colorbox{ksbg}{\parbox{1\textwidth}{\ic{#1}}}}
+\newcommand{\ic}[1]{{\psic\mono#1}}
+\newcommand{\icx}[1]{\psic\mono#1\pspara}
+\newcommand{\icfn}[1]{{\psic\mono\fn{#1}}}
+\newcommand{\e}[1]{\times 10^{#1}}
+
+% \ifoot{Page \pagemark}
+\cfoot{}
+\ofoot{}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=teal
+}
+
+\newenvironment{lcverbatim}
+ {\SaveVerbatim{cverb}}
+ {\endSaveVerbatim
+  \flushleft\fboxrule=0pt\fboxsep=.5em
+  \colorbox{ksbg}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{\BUseVerbatim{cverb}}%
+  }
+  \endflushleft
+}
