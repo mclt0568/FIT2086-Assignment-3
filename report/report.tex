@@ -174,7 +174,6 @@
 
     \subsection*{Question 2.7}
     
-    
     \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{diagrams/comp_test.png}
@@ -185,8 +184,45 @@
     Shown by \autoref{fig:2_7_fig}, both model has reasonably similar accuracy, while the Decision Tree model is more accurate then the logistic model in the cental area.
 
     \subsection*{Question 2.8}
+
+    \mk{How to use logistic regression?}
     
-    <Place Holder>
+    The 69\textsuperscript{th} patient in the test dataset has the following record (irrelevant variables are ignored):
+
+    \begin{tabularx}{\textwidth}{c c c c c c c c c}
+        \hline
+        \textbf{Variable} & \ic{AGE} & \ic{CP} & \ic{THALACH} & \ic{EXANG} & \ic{OLDPEAK} & \ic{CA} & \ic{THAL} & \ic{HD} \\
+        \textbf{Value} & 59 & \ic{Asympt}$\cdots$ & 140 & \ic{Y} & $3.4$ & $0$ & \ic{Reversible}$\cdots$ & \ic{Y}\\
+        \hline
+    \end{tabularx}
+
+    The patient has the combination of predictor values of \ic{THAL} $\neq$ ``Normal'', \ic{CA} $< 0.5$ and \ic{EXANG} $=$ \ic{Y}. According to the decision tree model, the patient has an estimated probability of $86.\dot3\dot6\%$ of having a heart disease.
+
+    The prediction of this patient using the logistic regression model will be
+    \[\begin{split}
+        \mathbb{E}[\hat{y}] = \; &
+          2.7405
+        - 1.1859p_{\text{AT}}
+        - 1.8903p_{\text{NA}}
+        - 1.8530p_{\text{T}}
+        - 0.0235r
+        + 0.5763o \\ &
+        + 1.0985a
+        - 0.3253t_\text{N}
+        + 1.4594t_\text{R} \\
+        \\ = \; &
+        2.7405
+        - 1.1859(0)
+        - 1.8903(0)
+        - 1.8530(0)
+        - 0.0235(140)
+        + 0.5763(3.4) \\ &
+        + 1.0985(0)
+        - 0.3253(0)
+        + 1.4594(1) \\
+        \\ = \; &
+        2.86932
+    \end{split}\]
 
     \subsection*{Question 2.9}
     
