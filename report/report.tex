@@ -76,9 +76,12 @@
 
     \subsection*{Question 1.5}
 
+    <Place Holder>
     % The predictor ``Nitric oxide concentration (i.e. \ic{nox})'' is negatively correlated with the outcome. Since nitric oxide concentration is a bioproduct of living organisms (Roszer, T), therefore planting more tree
 
     \subsection*{Question 1.6}
+
+    \mk{MARK}
 
     The \ic{predict} function yields the following result:
     
@@ -90,46 +93,142 @@
     This means, that \fn{we are 95\% confident that the actual median value is between \$20302.09 and \$23537.12}.
 
     \subsection*{Question 1.7}
+
+    \mk{MARK}
     
-    Hello
+    <Place Holder>
 \section*{Question 2}
     \subsection*{Question 2.1}
-    Hello
+
+    There are a total of 7 leaves.
+
+    The variables used in the tree are
+    \begin{inparaenum}[(1)]
+        \item Thallium scanning results (i.e. \ic{THAL}),
+        \item Chest pain type (i.e. \ic{CP}),
+        \item Number of major vessels colored by fluoroscopy (i.e. \ic{CA})
+        \item Exercise induced angina (i.e. \ic{EXANG}) and
+        \item Age of patient in years (i.e. \ic{AGE}).
+    \end{inparaenum}
+
     \subsection*{Question 2.2}
-    Hello
+    
+    \autoref{fig:2_2_tree} shows an annotated plot of decision tree, where each leaf has 3 information notated, they are
+    \begin{inparaenum}[(1)]
+        \item a character of ``Y'' or ``N'' for estimated prediction of the target
+        \item a ratio between ``Y'' and ``N'' of target that fulfills this leave's condition found in the sample and
+        \item a percentage value showing the estimated probability of the target is ``Y'' for a certain leave, calculated using the ratio.
+    \end{inparaenum}.
+
+    As shown by the figure, predictors \ic{THAL} and \ic{CA} are relatively deterministic when determining present of heart disease. When \ic{THAL} is other then \ic{Normal}, the estimated probability of having a heart diseases increases from $24.2858\%$ to $75.8333\%$; Similarly, when \ic{THAL} is \ic{Normal}, but \ic{CA} is greater or equal to $0.5$, the estimated probability of having a heart diseases increases from $15.4472\%$ to $88.2353\%$.
+    
+    Other factors such as \ic{EXANG} and \ic{AGE} are also a factor, but they are multiple layer of factors under to filter out the lower estimated probability of heart diseases under anomalous \ic{THAL} (i.e. other than \ic{Normal} for \ic{THAL}), just the probability may be slightly lower.
+    
     \subsection*{Question 2.3}
-    Hello
+    
+    See \autoref{fig:2_2_tree} for annotated tree.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{diagrams/annotated.png}
+        \caption{Cross Validated Decision Tree for Heart Disease.}
+        \label{fig:2_2_tree}
+    \end{figure}
+
     \subsection*{Question 2.4}
-    Hello
+    
+    According to the tree, the combination of predictor results will result in the highest estimated probability of heart diseases are a patient with anomalous \ic{THAL} reading and \ic{CA} of greater or equal to $0.5$, the estimated probability of this leaf is $92.5357\%$.
+
     \subsection*{Question 2.5}
-    Hello
+    
+    \mk{MARK}
+
+    The most important predictor in terms of coefficient is \ic{CP} with one of its value contributing -1.8903 units to the model.
+
+    The most important predictor in terms of p-value is \ic{CA}, with a p-value of $1.14\e{-5}$.
+
     \subsection*{Question 2.6}
-    Hello
+
+    Let $p_{\text{AT}}$, $p_{\text{NA}}$ and $p_{\text{T}}$ be the categorical predictor of \ic{CP} with value \ic{Atypical}, \ic{NonAnginal} and \ic{Typical} respectively. When non of the predictor variable is 1, it represents the value of \ic{Asymptomatic}.
+
+    Let $t_{\text{N}}$ and $t_{\text{R}}$ be the categorical predictor of \ic{THAL} with value \ic{Normal} and \ic{Fixed.Defect} respectively. When non of the predictor variable is 1, it represents the value of \ic{Reversible.Defect}.
+
+    Let $r$, $o$ and $a$ be the predictor of \ic{THALACH}, \ic{OLDPEAK}, \ic{CA} respectively. (letter $r$ representing Rate)
+
+    Let $\hat{y}$ be the outcome of \ic{HD}.
+
+    The final regression model is
+
+    \[\begin{split}
+        \mathbb{E}[\hat{y}] = \; &
+          2.7405
+        - 1.1859p_{\text{AT}}
+        - 1.8903p_{\text{NA}}
+        - 1.8530p_{\text{T}}
+        - 0.0235r
+        + 0.5763o \\ &
+        + 1.0985a
+        - 0.3253t_\text{N}
+        + 1.4594t_\text{R}
+    \end{split}\]
+
     \subsection*{Question 2.7}
-    Hello
+    
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{diagrams/comp_test.png}
+        \caption{Prediction Statistics Comparison for Tree Model and Logistic Regression Model.}
+        \label{fig:2_7_fig}
+    \end{figure}
+
+    Shown by \autoref{fig:2_7_fig}, both model has reasonably similar accuracy, while the Decision Tree model is more accurate then the logistic model in the cental area.
+
     \subsection*{Question 2.8}
-    Hello
+    
+    <Place Holder>
+
     \subsection*{Question 2.9}
-    Hello
+    
+    <Place Holder>
+
     
 \section*{Question 3}
     \subsection*{Question 3.1}
-    Hello
-    \subsection*{Question 3.2}
-    Hello
-    \subsection*{Question 3.3}
-    Hello
-    \subsection*{Question 3.4}
-    Hello
-    \subsection*{Question 3.5}
-    Hello
-    \subsection*{Question 3.6}
-    Hello
-    \subsection*{Question 3.7}
-    Hello
-    \subsection*{Question 3.8}
-    Hello
     
+    <Place Holder>
+
+    \subsection*{Question 3.2}
+    
+    <Place Holder>
+
+    \subsection*{Question 3.3}
+    
+    <Place Holder>
+
+    \subsection*{Question 3.4}
+    
+    <Place Holder>
+
+    \subsection*{Question 3.5}
+    
+    <Place Holder>
+
+    \subsection*{Question 3.6}
+    
+    <Place Holder>
+
+    \subsection*{Question 3.7}
+    
+    <Place Holder>
+
+    \subsection*{Question 3.8}
+    
+    <Place Holder>
+
+    \begin{center}
+        <End of Document>
+    \end{center}
 % \end{multicols*}
 \end{document}
 

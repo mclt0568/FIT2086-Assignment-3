@@ -1,3 +1,6 @@
+WORKING_DIR <- "~/Documents/project-c2001/FIT2086-Assignment3/code/"
+setwd(WORKING_DIR)
+
 #################################################
 ## Question 1                                   #
 #################################################
@@ -71,7 +74,58 @@ summary(q1_7_interaction_fit)
 #################################################
 
 rm(list = ls())
-q2_df <- read.csv("heart.train.2023.csv")
+
+library(glmnet)
+library(rpart)
+library(randomForest)
+library(kknn)
+source("wrappers.R")
+source("my.prediction.stats.R")
+
+q2_df_train <- read.csv("heart.train.2023.csv")
+q2_df_test <- read.csv("heart.test.2023.csv")
 
 # Question 2.1
-summary(q2_df)
+summary(q2_df_train)
+
+q2_tree <- rpart(HD ~ ., q2_df_train)
+q2_cv <- learn.tree.cv(HD ~ .,
+                       data = q2_df_train,
+                       nfolds = 10,
+                       m = 5000)
+
+print(q2_cv)
+
+# Question 2.2
+dev.off(dev.list()["RStudioGD"])
+# png("plot.png", pointsize=3, width=700, height=1000, res=100)
+plot(q2_cv$best.tree, margin = 0.5)
+text(q2_cv$best.tree, pretty = 12, digits = 3, use.n = TRUE)
+dev.off()
+
+# Question 2.3
+"Code N/A for this question."
+q2_df_train$HD <- factor(q2_df_train$HD)
+q2_fit <- glm(HD ~ ., q2_df_train, family = binomial)
+q2_bic_step <- step(q2_fit,
+                    k = log(nrow(q2_df_train)),
+                    direction = "both",
+                    trace = 0)
+print(summary(q2_bic_step))
+
+# Question 2.4
+"Code N/A for this question."
+
+# Question 2.5
+"Code N/A for this question."
+
+# Question 2.6
+q2_df_test$HD <- factor(q2_df_test$HD)
+my.pred.stats(predict(q2_bic_step,
+                      q2_df_test,
+                      type = "response"),
+              q2_df_test$HD)
+
+my.pred.stats(predict(q2_tree,
+                      q2_df_test)[, 2],
+              q2_df_test$HD)
