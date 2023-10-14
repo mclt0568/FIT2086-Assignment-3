@@ -1,4 +1,5 @@
 /report/*
 !/report/*.tex
 !/report/*.png
+!/report/diagrams/
 .vscode/*
