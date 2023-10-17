@@ -51,7 +51,7 @@ q1_6_predictors <- data.frame(crim = 0.04741,
                               ptratio = 21,
                               lstat = 7.88)
 prediction <- predict(q1_4_fit, newdata = q1_6_predictors,
-                      interval = "confidence")
+          interval = "confidence")
 print(prediction)
 
 # Question 1.7
@@ -129,3 +129,84 @@ my.pred.stats(predict(q2_bic_step,
 my.pred.stats(predict(q2_tree,
                       q2_df_test)[, 2],
               q2_df_test$HD)
+
+
+#################################################
+## Question 3                                   #
+#################################################
+
+rm(list = ls())
+library("boot")
+q3_df_measured <- read.csv("ms.measured.2023.csv")
+q3_df_truth <- read.csv("ms.truth.2023.csv")
+
+library("kknn")
+
+# Question 3.1
+error <- c()
+for (k in 1:25){
+  knn <- kknn(intensity ~ .,
+              q3_df_measured,
+              q3_df_truth,
+              k = k)
+  fitted <- fitted(knn)
+
+  msqer <- mean((fitted - q3_df_truth$intensity) ^ 2)
+  error <- c(error, msqer)
+}
+
+plot(error)
+
+# Question 3.2
+k_vals <- c(2,5,10,25)
+for (k in k_vals){
+  knn <- kknn(intensity ~ .,
+              q3_df_measured,
+              q3_df_truth,
+              k = k)
+  fitted <- fitted(knn)
+
+  plot(q3_df_measured$MZ, 
+       q3_df_measured$intensity,
+       type = "p",
+       col = "red")
+  lines(q3_df_truth$MZ,
+       q3_df_truth$intensity,
+       col = "blue")
+  lines(q3_df_truth$MZ,
+       fitted,
+       type = "l",
+       col = "green")
+}
+
+# Question 3.3
+"Code N/A for this question."
+
+# Question 3.4
+"Code N/A for this question."
+
+# Question 3.5
+q3_cv <- train.kknn(intensity ~ .,
+                    q3_df_measured,
+                    kmax = 25,
+                    kernel = "optimal")
+
+q3_best_param <- q3_cv$best.parameters$k
+print(q3_best_param)
+
+# Question 3.6
+"TODO"
+
+# Question 3.7
+q3_7_fitted <- fitted(kknn(intensity ~ .,
+                        q3_df_measured,
+                        q3_df_truth,
+                        k = q3_best_param,
+                        kernel = "optimal"))
+
+q3_7_maximum <- which.max(q3_7_fitted)
+q3_7_mz <- q3_df_truth$MZ[q3_7_maximum]
+print(q3_7_mz)
+
+# Question 3.8
+"TODO"
